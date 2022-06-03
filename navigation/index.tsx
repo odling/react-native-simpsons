@@ -16,6 +16,10 @@ import LinkingConfiguration from "./LinkingConfiguration";
 import NavigationService from "../services/NavigationService";
 import AddScreen from "../screens/AddScreen";
 import DetailsScreen from "../screens/DetailsScreen";
+import { Switch, View } from "react-native";
+import { themeSwitched } from "../features/theme/themeSlice";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import Text from "../components/styled/Text";
 
 export default function Navigation() {
   return (
@@ -37,6 +41,13 @@ export default function Navigation() {
 const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const dispatch = useAppDispatch();
+  const switchTheme = () => {
+    dispatch(themeSwitched());
+  };
+  const switchValue =
+    useAppSelector((state) => state.theme.name) == "dark" ? true : false;
+
   return (
     <Stack.Navigator
       initialRouteName="Home"
@@ -54,7 +65,16 @@ function RootNavigator() {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
-        options={{ title: "Simpsons" }}
+        options={{
+          title: "Simpsons",
+          headerRight: () => (
+            <Switch
+              onValueChange={switchTheme}
+              value={switchValue}
+              style={{ marginRight: 15 }}
+            />
+          ),
+        }}
       />
       <Stack.Screen
         name="Details"

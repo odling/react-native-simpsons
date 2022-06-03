@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import AddButton from "../components/AddButton";
 import CharacterList from "../components/CharacterList";
+import Box from "../components/styled/Box";
 import { RootTabScreenProps } from "../types";
 
 export default function HomeScreen({
@@ -8,10 +9,10 @@ export default function HomeScreen({
 }: RootTabScreenProps<"TabOne">) {
 
   return (
-    <View style={styles.container}>
+    <Box backgroundColor="background" style={styles.container}>
       <CharacterList />
       <AddButton />
-    </View>
+    </Box>
   );
 }
 
@@ -20,7 +21,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgba(0,0,0,0.1)",
   },
   title: {
     fontSize: 20,

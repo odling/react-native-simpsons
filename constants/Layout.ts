@@ -1,12 +1,24 @@
-import { Dimensions } from 'react-native';
-
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
-
-export default {
-  window: {
-    width,
-    height,
+export const layout = {
+  spacing: {
+    s: 8,
+    m: 16,
+    l: 24,
+    xl: 40,
   },
-  isSmallDevice: width < 375,
+  textVariants: {
+    header: {
+      fontFamily: "Roboto",
+      fontSize: 36,
+      fontWeight: "bold",
+    },
+    subHeader: {
+      fontFamily: "Roboto",
+      fontSize: 24,
+      fontWeight: "bold",
+    },
+    body: {
+      fontFamily: "Roboto",
+      fontSize: 16,
+    },
+  },
 };

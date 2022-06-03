@@ -3,13 +3,14 @@ import {
   StyleSheet,
   View,
   Image,
-  Text,
   TouchableOpacity,
   ImageSourcePropType,
 } from "react-native";
 import NavigationService from "../services/NavigationService";
 import CharacterButtons from "./CharacterButtons";
 import { ICharacter } from "../features/characters/characterSlice";
+import Text from "./styled/Text";
+import Box from "./styled/Box";
 
 export default function Character({
   character,
@@ -28,22 +29,29 @@ export default function Character({
   };
   return (
     <TouchableOpacity
-      style={styles.container}
       activeOpacity={1}
       onPress={goToDetails}
     >
-      <View style={styles.indexContainer}>
-        <Text style={styles.index}>{index}</Text>
-      </View>
-      <View style={styles.imageContainer}>
-        <Image source={{ uri: image }} style={styles.image} />
-      </View>
-      <View style={styles.nameContainer}>
-        <Text style={styles.name}>{character}</Text>
-      </View>
-      <View style={styles.buttonContainer}>
-        <CharacterButtons index={index} />
-      </View>
+      <Box backgroundColor="foreground" style={styles.container} padding="s">
+        <Box
+          style={styles.indexContainer}
+        >
+          <Text color="primary" variant="body">
+            {index}
+          </Text>
+        </Box>
+        <Box style={styles.imageContainer}>
+          <Image source={{ uri: image }} style={styles.image} />
+        </Box>
+        <Box style={styles.nameContainer}>
+          <Text color="secondary" variant="body">
+            {character}
+          </Text>
+        </Box>
+        <Box style={styles.buttonContainer}>
+          <CharacterButtons index={index} />
+        </Box>
+      </Box>
     </TouchableOpacity>
   );
 }
@@ -55,7 +63,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 15,
     paddingHorizontal: 10,
-    backgroundColor: "white",
   },
   indexContainer: {
     flex: 0.08,
@@ -74,16 +81,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingRight: 5,
   },
-  index: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
   image: {
     height: 35,
     width: 35,
     resizeMode: "contain",
-  },
-  name: {
-    fontSize: 18,
   },
 });
