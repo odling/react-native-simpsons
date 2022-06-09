@@ -20,6 +20,7 @@ import { Switch, View } from "react-native";
 import { themeSwitched } from "../features/theme/themeSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import Text from "../components/styled/Text";
+import { theme } from "../constants/Theme";
 
 export default function Navigation() {
   return (
@@ -45,8 +46,10 @@ function RootNavigator() {
   const switchTheme = () => {
     dispatch(themeSwitched());
   };
+
+  const themeName =  useAppSelector((state) => state.theme.name);
   const switchValue =
-    useAppSelector((state) => state.theme.name) == "dark" ? true : false;
+    themeName == "dark" ? true : false;
 
   return (
     <Stack.Navigator
@@ -55,9 +58,9 @@ function RootNavigator() {
         headerTitleAlign: "center",
         gestureEnabled: true,
         headerBackAllowFontScaling: false,
-        headerStyle: { borderBottomWidth: 1 },
-        headerTitleStyle: { fontSize: 16 },
-        headerBackTitleStyle: { fontSize: 14 },
+        headerStyle: { borderBottomWidth: 1, backgroundColor: theme[themeName].foreground },
+        headerTitleStyle: { fontSize: 16, color: theme[themeName].primary },
+        headerBackTitleStyle: { fontSize: 14, color: theme[themeName].primary  },
         headerShadowVisible: true,
         ...TransitionPresets.SlideFromRightIOS,
       })}

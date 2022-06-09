@@ -5,11 +5,12 @@ const palette = {
   black: "#0B0B0B",
   white: "#F0F2F3",
   gray: "gray",
+  lightGray: "#ded3d3"
 };
 
 export const theme = {
   light: {
-    background: palette.gray,
+    background: palette.lightGray,
     foreground: palette.white,
     primary: palette.black,
     secondary: palette.gray,
